@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+  
+  table{
+    border:1px solid black;
+    font-family: arial, sans-serif;
+    text-align: left;
+    border-collapse: collapse;
+    width: 60%;
+    
+    
+  }
+  table, td {
+    border:1px solid black;
+  }
+  .full-height-table {
+    height: 60px;
+  }
+  th{
+    border:1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+    border:1px solid black;
+  }
+  .box{
+    width: 600px;
+    height: 50px;
+  }
+  .gri {
+      background-color: rgb(173, 170, 170);
+    }
+  
+
+</style>
+<head> <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <form action="deneme.php" method="post" onsubmit="return validateForm();">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Unicode_0x0045.svg/1200px-Unicode_0x0045.svg.png" width="75" height=""50" align="left" alt="Logo"/>
+  <script src="deneme.js" defer></script>
+  <h3>
+    <br>
+    <p><u>YENİ PERSONEL BİLDİRİM FORMU/Rev. No: 1.10&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kayıt No:..... </u></p>
+
+  </h3>
+
+  <table style="width:100%">
+  <tr>
+    <th class="box">Adı Soyadı: </th>
+    <th class="box" ><input type="text" name="ad" id="adInput" required> </th>
+    
+    <th class="box">T.C. Kimlik No: </th>
+    <th class="box" colspan="3" ><input type="text" id="tcKimlikInput" name="tcKimlik" oninput="validateTC(event)" placeholder="12345678901" >
+    <p id="errorMessage"></p></th>
+  </tr>
+  <tr>
+    <th class="box">Sicil Numarası:  </th>
+    <th ><input type="text" name="sicil" id="scInput" required oninput="validateSicil(event)"> 
+    <p id="errorMessage2"></p></th>
+    <th>İşe Giriş Tarihi: </th>
+    <th class="box" colspan="3" ><input type="date" name="tarih" id="tarihInput" required > </th>
+  </tr>
+  <tr>
+    <th>İmzası: </th>
+    <th class="box" colspan="4" >  </th>
+  </tr>
+  <tr>
+    <th>Grubu/Birimi: </th>
+    <th class="box" colspan="4" ><input type="text" name="grup" id="grupInput" required>  </th>
+  </tr>
+  <tr>
+    <th class="box">Kadrosu/Unvanı:</th>
+    <td >
+      <input type="radio" id="secenek" name="secenek">
+      <label for="arastirmaci">Araştırmacı</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek" name="secenek">
+      <label for="teknisyen">Teknisyen</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek" name="secenek">
+      <label for="idari">İdari</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek" name="secenek">
+      <label for="diger">Diğer:</label>
+    </td>
+  </tr>
+  <tr>
+    <th class="box">Sendika Durumu:
+        <p>Kadro Durumu:</p>
+    </th>
+    <td>
+      <input type="radio" id="secenek1" name="secenek1">
+      <label for="sendikali">Sendikali</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek1" name="secenek1">
+      <label for="kadrolu">Kadrolu</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek1" name="secenek1">
+      <label for="sendikali_degil">Sendikali Değil</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek1" name="secenek1">
+      <label for="proje_personeli">Proje Personeli</label>
+    </td>
+  </tr>
+  </table>
+
+
+<div style="overflow-x: auto">
+  <table style="width:100%">
+  <tr>
+    <th class="box gri" colspan="4"> <i>Grup Lideri/Birim Amiri Tarafından Doldurulacaktır </i></th>
+    
+    
+  </tr>
+  <tr>
+    <th>Görev Alacağı Proje(ler):   </th>
+    <th class="box" colspan="4" ><input type="text" name="görev" id="görevInput" required></th>
+  </tr>
+
+  <tr>
+    <th rowspan="2">Telefon Bağlantı Talebi:</th>
+    <td rowspan="2"><input type="radio" id="Yok" name="tel" value="Yok" onclick="toggleNoInput();"/>  
+        <label>Yok</label></td>
+    <td rowspan="2"><input type="radio" id="Var" name="tel" value="Var" onclick="toggleNoInput();"/>  
+        <label>Var</label></td>
+        </td>
+    <td class="box gri"><u><i>Tesis İşletme Birimi tarafından doldurulacaktır(G15 no.'lu oda )</i></u></td>
+  </tr>
+  <tr>
+    <td><label for="no">Verilen Telefon Numarası: </label><input type="text" name="no" id="no" disabled></td>
+  </tr>
+  <tr>
+    <th rowspan="2">Etki Alanı Kullanıcı Hesabı:</th>
+    <td rowspan="2"><input type="radio" id="acilmayacak" name="etki" value="acilmayacak" onclick="toggleKullaniciInput();"/>  
+        <label>Açılmayacak</label></td>
+    <td rowspan="2"><input type="radio" id="acilacak" name="etki" value="acilacak" onclick="toggleKullaniciInput();"/>  
+        <label>Açılacak</label></td>
+        </td>
+    <td class="box gri"><u><i>Bilgi Teknolojileri Grubu tarafından doldurulacaktır(211 no.'lu oda )</i></u></td>
+  </tr>
+  <tr>
+    <td><label for="no">Açılan Kullanıcı Adı: </label><input type="text" name="no1" id="no1" required disabled></td>
+  </tr>
+  <tr>
+
+  <tr>
+    <th>İç E-posta Hesabı: </th>
+    <td>
+      <input type="radio" id="secenek4" name="secenek4" onclick="toggleIcEpostaInput();">
+      <label for="acilmayacak">Açılmayacak</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek4" name="secenek4" onclick="toggleIcEpostaInput();">
+      <label for="acilacak">Açılacak</label>
+    </td>
+    
+    <td >Açılan E-posta adresi: <input type="email" name="görev1" id="görev1Input" required disabled> </td>
+    
+  </tr>
+  <tr>
+    <th>Dış E-posta Hesabı: </th>
+    <td>
+      <input type="radio" id="secenek5" name="secenek5" onclick="toggleDisEpostaInput();">
+      <label for="acilmayacak">Açılmayacak</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek5" name="secenek5" onclick="toggleDisEpostaInput();">
+      <label for="acilacak">Açılacak</label>
+    </td>
+    
+    <td >Açılan E-posta adresi: <input type="email" name="görev2" id="görev2Input" required disabled></td>
+  </tr>
+  <tr>
+    <th>YBS Hesabı: </th>
+    <td>
+      <input type="radio" id="secenek6" name="secenek6">
+      <label for="acilmayacak">Açılmayacak</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek6" name="secenek6">
+      <label for="acilacak">Açılacak</label>
+    </td>
+    <th>
+      <div></div>
+    </th>
+  </tr>
+  <tr>
+    <th>EBYS Hesabı: </th>
+    <td>
+      <input type="radio" id="secenek7" name="secenek7">
+      <label for="acilmayacak">Açılmayacak</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek7" name="secenek7">
+      <label for="acilacak">Açılacak</label>
+    </td>
+    <th>
+      <div></div>
+    </th>
+  </tr>
+  <tr class="box">
+    <th class="box">Grup/Birim Listesi dışında üye yapılması istenen e-posta listeleri:
+    <td colspan="4">(Proje Listeleri için Proje Yöneticisinin onayı gerekmektedir.)
+    </td>
+    </th>
+  </tr>
+  </table>
+</div>
+
+<div style="overflow-x: auto">
+  <table style="width:100%">
+  <tr>
+    <th class="box gri" colspan="4" ><i>Ayniyat ve Stok Kontrol Bildirimi </i></th>
+  </tr>
+  <tr>
+    <th>Veri Tabanına Giriş Durumu: </th>
+    <th>
+      <input type="radio" id="secenek8" name="secenek8">
+      <label for="giris_yapildi">Giriş Yapıldı</label>
+    </th>
+    <th>
+      <input type="radio" id="secenek8" name="secenek8">
+      <label for="giris_yapilmadi">Giriş Yapılmadı</label>
+    </th>
+  </tr>
+  </table>
+</div>
+
+<div style="overflow-x: auto">
+  <table style="width:100%">
+  <tr>
+    <th class="box gri" colspan="4"><i>Grup Lideri</i></th>
+  </tr>
+  <tr>
+    <th>Kişi Güvenlik Belgesi: </th>
+    <th>
+      <input type="radio" id="secenek9" name="secenek9">
+      <label for="gerekiyor">Gerekiyor</label>
+    </th>
+    <th>
+      <input type="radio" id="secenek9" name="secenek9">
+      <label for="gerekmiyor">Gerekmiyor</label>
+    </th>
+  </tr>
+  </table>
+</div>
+
+<div style="overflow-x: auto">
+  <table style="width:100%">
+  <tr>
+    <th class="box gri" colspan="4"><i>Tesis Güvenlik Koordinatörü Tarafından Doldurulacaktır (Z038 No'lu Oda)</i></th>
+  </tr>
+  <tr>
+    <th>El yazısı: </th>
+    <td>
+      <input type="radio" id="secenek10" name="secenek10">
+      <label for="alindi">Alındı</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek10" name="secenek10">
+      <label for="alinmadi">Alınmadı</label>
+    </td>
+    <td>İmza: </td>
+  </tr>
+  <tr>
+    <th>Kişi Güvenlik Belgesi: </th>
+    <td>
+      <input type="radio" id="secenek11" name="secenek11">
+      <label for="girisimlere_baslandi">Girişimlere başlandı. (Belge gerekiyor ise)</label>
+    </td>
+    <td>İmza: </td>
+  </tr>
+  </table>
+</div>
+<div style="overflow-x: auto">
+  <table style="width:100%">
+  <tr>
+    <th class="box gri" colspan="4"><i>Enstitü Oryantasyon</i> </th>
+  </tr>
+  <tr>
+  <tr>
+    <th>Eğitim ve Kaynak Yönetimi Grubu : </th>
+    <td>
+      <input type="radio" id="secenek12" name="secenek12">
+      <label for="alindi">Alındı</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek12" name="secenek12">
+      <label for="alinmadi">Alınmadı</label>
+    </td>
+    <td>İmza: </td>
+  </tr>
+  <tr>
+    <th>Grup/Birim Eğitimi (İlk Amiri): </th>
+    <td>
+      <input type="radio" id="secenek13" name="secenek13">
+      <label for="alindi">Alındı</label>
+    </td>
+    <td>
+      <input type="radio" id="secenek13" name="secenek13">
+      <label for="alinmadi">Alınmadı</label>
+    </td>
+    <td>İmza: </td>
+  </tr>
+  </table>
+</div>
+<p><u>*Grup Lideri / Birim Amiri tarafından onaylandıktan sonra form İnsan Kaynakları birimine iletilir.</u></p>
+<br><button name="gönder "id="submitBtn">Gönder</button>
+</form>
+</body>
+
+  
+</html>
